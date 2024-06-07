@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+<style>
+    .profile-container {
+        display: flex;
+        justify-content: center; /* Horizontally center the content */
+        align-items: center; /* Vertically center the content */
+        height: 100vh; /* Set the height of the container to the full viewport height */
+        margin: 0; /* Remove default margin */
+    }
+    .picture {
+        max-width: 200px; /* Set the maximum width for the picture */
+        height: auto; /* Maintain aspect ratio */
+        border: 2px solid black; /* Add a border */
+    }
+</style>
+{% block content %}
+
+<div class="profile-container">
+    <div>
+        <img src="{{user.avatar.url}}" class="picture" alt="Profile Picture"/>
+    </div>
+    <div>{{user.username}}</div>
+    <br><br>
+    <div>
+        <h4>About</h4>
+        <p>{{user.bio}}</p>
+    </div>
+    <br><br>
+    <div>
+        <a href="{% url 'update-user' %}">Edit Profile</a>
+    </div>
+    <br><br><br>
+    <div>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+{% endblock content %}

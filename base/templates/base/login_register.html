@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register Page</title>
+    <style>
+        #center-text{
+            text-align: center;
+            color: black;
+        }
+
+        /* New Style Rules */
+        .form-container, .link-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+
+    
+
+    {% if page == 'login' %}
+
+    <div id="center-text">
+        <h2>Welcome back!</h2>
+        <p>Let's have your details to get you back in</p>
+    </div>
+    <br>
+
+    <div class='form-container'>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div>
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Enter Email" required/></div>
+            <br>
+            <br>
+            <div>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter Password" required/></div>
+            <br>
+            <br>
+            <div>
+            <input type="submit" value="Login"/></div>
+        </form>
+    </div>
+
+    <div class='link-container'>
+        <p>haven't signed up yet?</p>
+        <a href="{% url 'register' %}">Sign up</a>
+    </div>
+
+    {% else %}
+
+    <div id="center-text">
+        <h2>Welcome!</h2>
+        <p>Let's have your details so you can join our community</p>
+    </div>
+    <br>
+
+    <div class='form-container'>
+        <form method="POST" action="">
+            {% csrf_token %}
+            
+            {% for field in form %}
+        <br>
+        <div>
+            <label>{{field.label}}</label>
+            {{field}}
+        </div>
+        <br>
+        {% endfor %}
+                <!-- <label>Full Name:</label>
+                <input type="text" name="name" placeholder="Enter Full name" /></div>
+                <br>
+                <br>
+                <div>
+                <label>Username:</label>
+                <input type="text" name="username" placeholder="Enter Username"/></div>
+                <br>
+                <br>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" name="email" placeholder="Enter Email" required/></div>
+                <br>
+                <br>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password1" placeholder="Enter Password" required/></div>
+                <br>
+                <br>
+                <div>
+                    <label>Confirm Password:</label>
+                    <input type="password" name="password2" placeholder="Confirm Password" required/></div> -->
+            <br>
+            <input type="submit" value="Register" />
+        </form>
+    </div>
+
+    <div class='link-container'>
+        <p>Already signed up?</p>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    {% endif %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+</body>
+</html>

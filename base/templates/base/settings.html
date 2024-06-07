@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+
+<style>
+    .settings-container {
+        display: grid;
+        grid-template-rows: 3fr 1fr;
+    }
+    .settings-subcontainer {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+    }
+</style>
+
+<script>
+    function confirmDelete() {
+        try {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                document.getElementById('delete-form').submit();
+            }
+        } catch (error) {
+            console.error('Error submitting form: ', error);
+        }
+    }
+</script>
+
+{% block content %}
+<div class="settings-container">
+    <div class="settings-subcontainer">
+        <div>
+            <h5>Delete Account?</h5>
+            <small>When you click delete, you'll lose all progress</small>
+        </div>
+        <!-- <div>
+            <button type="button" onclick="confirmDelete()">Delete</button>
+            &nbsp;&nbsp;
+            <a href="{% url 'settings' %}">Learn More</a>
+        </div> -->
+        <div>
+            <form method="POST" action="{% url 'delete-user' %}">
+                {% csrf_token %}
+
+                <button type="submit">Delete Account</button>
+                &nbsp;&nbsp;
+                <a href="{% url 'settings' %}">Learn more</a>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<!-- <form id="delete-form" method="POST" action="{% url 'delete-user' %}">
+    {% csrf_token %}
+</form> -->
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock content %}

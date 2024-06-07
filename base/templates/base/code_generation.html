@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+<style>
+    form {
+        width: 100%; 
+        background-color: #f0f0f0; 
+        padding: 20px; 
+        box-sizing: border-box;
+        position: absolute;  
+        bottom: 0;  
+    }
+</style>
+{% block content %}
+
+<div>
+    <form method="POST" action="">
+        <label>Chat</label>
+        <textarea name="code" required placeholder="Enter Code here!" rows="5" cols="50"></textarea>
+        <br>
+        <button type="submit">Send</button>
+    </form>
+
+
+{% endblock content %}

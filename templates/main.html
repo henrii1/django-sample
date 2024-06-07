@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centrilearn</title>
+
+    <style>
+        .div-container {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+        }
+
+        #nav-container {
+            display: grid;
+            grid-template-rows: 4fr 5fr 1fr;
+            height: 100vh; 
+            grid-template-areas: 
+                "menu"
+                "tools"
+                "userinfo"; 
+        }
+        .menu {
+            grid-area: menu;
+        }
+        .tools {
+            grid-area: tools;
+        }
+        .userinfo {
+            grid-area: userinfo;
+        }
+    </style>
+
+</head>
+<body>
+
+    {% include 'nav.html' %}
+
+    <div class="div-container">
+        <div>
+            <div>
+                <a href="/">
+                    <h4>LOGO</h4>
+                </a>
+                <div id="nav-container">
+                    <div class="menu">
+                        <div><a href="/">New Chat</a></div>
+                        <div><a href="/">Chat History</a></div>
+                        <div><a href="/">Subscription</a></div>
+                        <div><a href="{% url 'delete-user' %}">Settings</a></div>
+                    </div>
+                    <div class="tools">
+                        <h6>Ai Tools</h6><br>
+                        <div><a href="/">My learnings</a></div>
+                        <div><a href="/">Code Generator</a></div>
+                    </div>
+                    <div class="userinfo">
+                        <div>
+                            <a href="{% url 'profile' %}">user-name</a>
+                            &nbsp;
+                            <small>plan</small>
+                        </div>
+                        <a href="/"><h6>Upgrade to Pro</h6></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+</body>
+</html>

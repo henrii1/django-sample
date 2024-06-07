@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    .home-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch; /* Changed to stretch to use full container height */
+        height: calc(100vh - 50px);
+    }
+    .home-container img {
+       max-width: 70%;
+       max-height: auto; 
+       border: 5px solid #000;
+    }
+    .home-container div {
+       flex: 1;
+       display: flex;
+       justify-content: center;
+       position: relative;  
+    }
+    .home-container div:first-child,
+    .home-container div:last-child {
+       flex-basis: 25%;
+    }
+    .home-container div:nth-child(2) {
+       flex-basis: 50%;
+       flex-direction: column; /* Add flex direction to stack child elements */
+       justify-content: flex-end; /* Align children (including form) to bottom */
+    }
+    form {
+        width: 100%; 
+        background-color: #f0f0f0; 
+        padding: 20px; 
+        box-sizing: border-box;
+        position: absolute;  
+        bottom: 0;  
+    }
+</style>
+<br>
+<br>
+<div class="home-container">
+    <div>
+        <!-- <img src="{% static 'images/ai.jpg' %}"> -->
+    </div>
+    <div>
+        <form method="POST" action="">
+            <label>Chat</label>
+            <textarea name="chat" required placeholder="Enter Chat here!" rows="5" cols="50"></textarea>
+            <br>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <div>
+        <!-- <img src="{% static 'images/avatar.svg' %}" alt="User image from database"> -->
+    </div>
+</div>
+
+{% endblock content %}

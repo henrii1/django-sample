@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+<style>
+    .form-container {
+        text-align: center;
+    }
+</style>
+
+{% block content %}
+
+<div class="form-container">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <br>
+        <div>
+            <label>{{field.label}}</label>
+            {{field}}
+        </div>
+        <br>
+        {% endfor %}
+        <br>
+        <div><a href="{% url 'home' %}">Cancel</a></div>
+        <br>
+        <div><button type="submit">Update</button></div>
+    </form>
+    <br>
+    <br>
+    <div><a href="{% url 'change-password' %}">Change Password</a></div>
+    <br>
+    <div><a href="{% url 'logout' %}">Logout</a></div>
+</div>
+
+{% endblock content %}
